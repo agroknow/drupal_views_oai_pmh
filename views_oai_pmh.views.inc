@@ -66,6 +66,19 @@ function views_oai_pmh_views_plugins() {
         ),
         'additional themes base' => 'views_oai_pmh',
       ) + $style_defaults,
+            //added for okhub AP
+      'views_oai_pmh_okhub' => array(
+        'title' => t('OAI-PMH (okhub)'),
+        'help' => t('Export the display as a OKHub Ap OAI-PMH feed'),
+        'handler' => 'views_oai_pmh_plugin_style_okhub',
+        'oai headers' => array('Content-Type' => 'text/xml'),
+        'additional themes' => array(
+          'views_oai_pmh_okhub_record' => 'style',
+          'views_oai_pmh_plugin_row_okhub' => 'style',
+          'views_oai_pmh_plugin_row_okhub_fields' => 'style',
+        ),
+        'additional themes base' => 'views_oai_pmh',
+      ) + $style_defaults,
  /*     'views_oai_pmh_etdms' => array(
         'title' => t('OAI-PMH (ETDMS)'),
         'help' => t('Export the display as a ETDMS OAI-PMH feed'),
@@ -78,6 +91,7 @@ function views_oai_pmh_views_plugins() {
         'additional themes base' => 'views_oai_pmh',
       ) + $style_defaults,
 */
+
     ),
     'row' => array(
       'dc' => array(
@@ -94,6 +108,21 @@ function views_oai_pmh_views_plugins() {
         'type' => 'views_oai_pmh_dc',
         'help topic' => 'style-row-fields',
       ) ,
+      // added for okhub AP 
+      'okhub' => array(
+        'title' => t('OKHub AP Fields'),
+        'help' => t('Displays the fields as OKHub Ap elements.'),
+        'path' => $path . '/plugins',
+        'handler' => 'views_oai_pmh_plugin_row_okhub',
+        'theme' => 'views_oai_pmh_row_okhub_fields',
+        'parent' => 'views_oai_pmh',
+        'theme path' => $path . '/theme',
+        'theme file' => 'views_oai_pmh.theme.inc',
+        'uses fields' => TRUE,
+        'uses options' => TRUE,
+        'type' => 'views_oai_pmh_okhub',
+        'help topic' => 'style-row-fields',
+      ) ,
 /*      'etdms' => array(
         'title' => t('ETDMS Fields'),
         'help' => t('Displays the fields with as ETDMS elements.'),
@@ -108,6 +137,9 @@ function views_oai_pmh_views_plugins() {
         'type' => 'normal',
         'help topic' => 'style-row-fields',
       ) ,
-*/      ),
+*/ 
+
+
+     ),
     );
 }

@@ -56,6 +56,7 @@ class views_oai_pmh_plugin_row_dc extends views_plugin_row {
       'dc:relation'    => 'dc:relation',
       'dc:coverage'    => 'dc:coverage',
       'dc:rights'      => 'dc:rights',
+      'dc:extra'      => 'dc:extra',
     );
 
     $form['oai_labels'] = array(

@@ -21,11 +21,33 @@ class views_oai_pmh_plugin_display extends views_plugin_display_page {
   function init(&$view, &$display, $options = NULL) {
     parent::init($view, $display, $options);
 
+
     // Set the default row style. Ideally this would be part of the option
     // definition, but in this case it's dependent on the view's base table,
     // which we don't know until init().
-    $row_plugins = views_fetch_plugin_names('row', $this->get_style_type(), array($view->base_table));
-    $default_row_plugin = key($row_plugins);
+    $row_plugins = views_fetch_plugin_names('row', $this->get_style_type(), array($view->base_table)); 
+
+    $default_row_plugin = key($row_plugins); 
+    // $options['style_plugin']['default'] = $this->oai_args['style_plugin'];
+
+//added by gkista to check in admin area which row plugin we have
+// for the  admin area show fields
+//fix module bug default row_plugin dc
+$displab=$display->handler->display;
+$displaa=$displab->handler->options;
+if(is_array($displaa)){
+foreach ($displaa as $key=>$value) {
+            if($key=='style_plugin'){
+                if($value=='views_oai_pmh_dc'){
+                  $this->options['row_plugin']='dc';
+                }
+                if($value=='views_oai_pmh_okhub'){
+                  $this->options['row_plugin']='okhub';
+                }
+  }
+}
+}
+
     if ($this->options['row_plugin'] == '') {
       $this->options['row_plugin'] = $default_row_plugin;
     }
@@ -64,9 +86,14 @@ class views_oai_pmh_plugin_display extends views_plugin_display_page {
 
     $metadataPrefix = isset($this->oai_args['metadataPrefix']) ? $this->oai_args['metadataPrefix'] : 'oai_dc';
     switch($metadataPrefix) {
-      case 'etdms':
+      case 'etdms': 
         $options['style_plugin']['default'] = 'views_oai_pmh_etdms';
         $options['row_plugin']['default'] = 'etdms';
+        break;
+      //added for okhub AP
+        case 'okhub':
+        $options['style_plugin']['default'] = 'views_oai_pmh_okhub';
+        $options['row_plugin']['default'] = 'okhub';
         break;
       case 'oai_dc':
       default:
@@ -235,8 +262,10 @@ class views_oai_pmh_plugin_display extends views_plugin_display_page {
             $this->oai_check_args($args);
           }
           else {
+
             $this->oai_args += $this->oai_check_args($args, array('metadataPrefix'), array('from', 'until', 'set'));
             $this->oai_check_metadata_prefix($args);
+
           }
           break;
         case 'Identify':
@@ -265,7 +294,11 @@ class views_oai_pmh_plugin_display extends views_plugin_display_page {
       $this->oai_args['verb'] = '';
       $this->oai_error('noVerb');
     }
-
+    // gkista add this for view to keep the metadataPrefix
+  if (isset($args['metadataPrefix']) ) {
+    $this->oai_args['metadataPrefix'] = $args['metadataPrefix'];
+  }
+   
   }
 
   function oai_check_identifier($identifier) {
@@ -344,7 +377,8 @@ class views_oai_pmh_plugin_display extends views_plugin_display_page {
     if (!isset($args['metadataPrefix'])) {
       $this->oai_error('missingArgument', 'metadataPrefix');
     }
-    elseif (array_search($args['metadataPrefix'], array('oai_dc', 'etdms')) === FALSE) {
+    // add okhub to check in metadataPrefix
+    elseif (array_search($args['metadataPrefix'], array('oai_dc', 'etdms', 'okhub')) === FALSE) {
       $this->oai_error('cannotDisseminateFormat', 'metadataPrefix', $args['metadataPrefix']);
     }
   }

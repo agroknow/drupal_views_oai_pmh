@@ -3,7 +3,7 @@
 class views_oai_pmh_plugin_style extends views_plugin_style {
   protected $oai_args = array();
 
-  function render() {
+  function render() { 
     $content = '';
     $oai_resumption_token = '';
 
@@ -57,7 +57,7 @@ class views_oai_pmh_plugin_style extends views_plugin_style {
     }
   }
 
-  function render_identifiers() {
+  function render_identifiers() { 
     if (!empty($this->display->handler->oai_args['errors'])) return;
 
     if ($this->uses_row_plugin() && empty($this->row_plugin)) {
