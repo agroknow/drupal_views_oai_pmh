@@ -595,7 +595,7 @@ function _views_oai_pmh_xml_tag_clean($tag) {
   return $tag;
 }
 
-function theme_oai_field_mapper_form($vars) {
+function theme_oai_field_mapper_form($vars) { 
   $form = $vars['form'];
   foreach (element_children($form) as $key ) {
       $rows[] = array(
@@ -613,7 +613,7 @@ function theme_oai_field_mapper_form($vars) {
   return $output;
 
 }
-function theme_oai_field_okhub_mapper_form($vars) {
+function theme_oai_field_okhub_mapper_form($vars) { 
   $form = $vars['form'];
   foreach (element_children($form) as $key ) {
       $rows[] = array(
@@ -623,7 +623,7 @@ function theme_oai_field_okhub_mapper_form($vars) {
   }
   $header = array(
     t('Drupal field label'),
-    t('Dublin Core element name')
+    t('OKhub AP element name')
   );
   $output = theme('table', array('header' => $header, 'rows' => $rows));
 

@@ -24,6 +24,10 @@ function views_oai_pmh_theme() {
   	'oai_field_mapper_form' => array (
       'file' => 'theme/views_oai_pmh.theme.inc',
       'render element' => 'form',
+    ),
+    'oai_field_okhub_mapper_form' => array (
+      'file' => 'theme/views_oai_pmh.theme.inc',
+      'render element' => 'form',
     )
   );
 }

@@ -101,7 +101,7 @@ class views_oai_pmh_plugin_row_okhub extends views_plugin_row {
 
     $form['oai_labels'] = array(
       '#type' => 'fieldset',
-      '#title' => t('Drupal field to Dublin Core mapping'),
+      '#title' => t('Drupal field to OKhub AP mapping'),
       '#theme' => 'oai_field_okhub_mapper_form',
     );
 
