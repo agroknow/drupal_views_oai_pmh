@@ -62,8 +62,12 @@ function theme_views_oai_pmh_row_okhub_fields(&$vars) {
       $key = check_plain(_views_oai_pmh_xml_tag_clean($view->field[$id]->label()));
       
 
-      // if (isset($field->multiple) && !empty($field->multiple)) {
+      if (isset($field->multiple) && !empty($field->multiple)) {
         $separator = $field->options['separator'];
+      }else{
+        //in order to avoid separate one value if the value has ","
+        $separator = '---------------------!!----------';
+      }
         
         foreach (explode($separator, $field_output) as $value) {
    
