@@ -87,6 +87,7 @@ function theme_views_oai_pmh_row_okhub_fields(&$vars) {
 
               break;
             case "dcterms:creator":
+            case "dcterms:abstract":
             case "dcterms:contributor":
               $sub2['key'] = "foaf:name";
               $sub2['value'] = _views_oai_pmh_xmlstr($value);
