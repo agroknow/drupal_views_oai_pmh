@@ -44,6 +44,7 @@ class views_oai_pmh_plugin_row_dc extends views_plugin_row {
       'dc:title'			 => 'dc:title',
       'dc:creator'     => 'dc:creator',
       'dc:subject'     => 'dc:subject',
+      'dc:abstract'     => 'dc:abstract',
       'dc:description' => 'dc:description',
       'dc:publisher'   => 'dc:publisher',
       'dc:contributor' => 'dc:contributor',
