@@ -253,7 +253,8 @@ function theme_views_oai_pmh_row_okhub_fields(&$vars) {
             case "dcterms:subject_keywords":
               $item['key'] = 'dcterms:subject';
               $item['value'] = _views_oai_pmh_xmlstr($value);
-
+              if($lang=='')
+               $lang='english';
               $lang = find_language_attr_for_field($view,$row_index,$key.'_language',$iLanTitle);
               $iLanTitle++;
               $item['attributes'] = array('xml:lang'=>$lang);//put the language of abstract but it is not a view field
