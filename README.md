@@ -3,4 +3,4 @@
 List sets
 {oaiview url}?verb=ListSets
 List okhub records only
-{oaiview url}?verb=ListRecords&metadataPrefix=okhub
+{oaiview url}?verb=ListRecords&metadataPrefix=okhub&set=okhub
