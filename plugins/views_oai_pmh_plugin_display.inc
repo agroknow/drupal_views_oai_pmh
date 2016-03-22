@@ -378,9 +378,11 @@ foreach ($displaa as $key=>$value) {
        if ($args['set'] != 'okhub') {
         $this->oai_error('no such a set.Please specify okhub set.');
       }
-    }else{
-      $this->oai_error('no such a set.Please specify a set.');
     }
+    
+    //else{
+    //  $this->oai_error('no such a set.Please specify a set.');
+    //}
 
 
     return array();
