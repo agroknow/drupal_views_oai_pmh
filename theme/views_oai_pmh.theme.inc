@@ -253,11 +253,11 @@ function theme_views_oai_pmh_row_okhub_fields(&$vars) {
             case "dcterms:subject_keywords":
               $item['key'] = 'dcterms:subject';
               $item['value'] = _views_oai_pmh_xmlstr($value);
-              
+		
               $lang = find_language_attr_for_field($view,$row_index,$key.'_language',$iLanTitle);
               $iLanTitle++;
-              if($lang=='')
-               $lang='english';
+		if($lang=='')
+                 $lang='english';
               $item['attributes'] = array('xml:lang'=>$lang);//put the language of abstract but it is not a view field
               $items[] = $item;
 
@@ -494,6 +494,10 @@ function theme_views_oai_pmh_identify_body($vars) {
   return format_xml_elements($ident);
 }
 
+
+
+
+
 function theme_views_oai_pmh_metadataformats_body($vars) {
   $formats = '';
   $formats .= format_xml_elements(array ( '0'=> array('key'=> 'metadataFormat' ,'value' => array(
@@ -517,6 +521,19 @@ function theme_views_oai_pmh_metadataformats_body($vars) {
      ));
   return $formats;
 }
+
+
+
+function theme_views_oai_pmh_sets_body($vars) {
+  $sets = '';
+  $sets .= format_xml_elements(array ( '0'=> array('key'=> 'Sets' ,'value' => array(
+    'setSpec' => 'okhub',
+    'setName' => 'okhub',
+  ))
+     ));
+  return $sets;
+}
+
 
 function theme_views_oai_pmh_record_header($vars) {
   global $base_url;
