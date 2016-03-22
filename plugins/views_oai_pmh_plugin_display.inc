@@ -43,6 +43,7 @@ foreach ($displaa as $key=>$value) {
                 }
                 if($value=='views_oai_pmh_okhub'){
                   $this->options['row_plugin']='okhub';
+		  $this->options['set']='okhub';
                 }
   }
 }
@@ -280,7 +281,11 @@ foreach ($displaa as $key=>$value) {
           }
           break;
         case 'ListSets':
-          $this->oai_error('noSetHierarchy');
+         $this->oai_check_args($args, array(), array('set'));
+          if (count($this->oai_errors)) return;
+            $this->oai_args['nid'] = substr(strrchr($args['set'], ":"), 1);
+
+         // $this->oai_error('noSetHierarchy');
         //  $this->oai_resumption_token();
           break;
         default:
@@ -367,6 +372,14 @@ foreach ($displaa as $key=>$value) {
       if (!$this->oai_check_identifier($id)) {
         $this->oai_error('idDoesNotExist', 'badArgument', $id);
       }
+    }
+
+    if (isset($args['set']) | isset($args['Set'])) {
+       if ($args['set'] != 'okhub') {
+        $this->oai_error('no such a set.Please specify okhub set.');
+      }
+    }else{
+      $this->oai_error('no such a set.Please specify a set.');
     }
 
 
