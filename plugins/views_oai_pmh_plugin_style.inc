@@ -53,7 +53,10 @@ class views_oai_pmh_plugin_style extends views_plugin_style {
       case 'ListRecords':
         return $this->render_records();
       case 'ListSets':
-      default:
+        return theme('views_oai_pmh_sets_body');
+        break;
+     // case 'default'
+     //  default:
     }
   }
 
